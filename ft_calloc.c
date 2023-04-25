@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-void *ft_calloc(size_t nelem, size_t elsize)
+void	*ft_calloc(size_t nelem, size_t elsize);
 {
 	void *mem;
 	size_t i;
