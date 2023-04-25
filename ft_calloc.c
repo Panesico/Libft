@@ -1,15 +1,26 @@
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jorgfern <jorgfern@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/25 18:05:07 by jorgfern          #+#    #+#             */
+/*   Updated: 2023/04/25 18:19:56 by jorgfern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	*ft_calloc(size_t nelem, size_t elsize);
+#include "libft.h"
+
+void	*ft_calloc(size_t nelem, size_t elsize)
 {
-	void *mem;
-	size_t i;
+	char	*mem;
 
-	mem = (void *)malloc(nelem * elsize);
-	if(!mem)
+	if (!nelem || !elsize)
 		return (0);
-	i = 0;
-	while(i < nelem * elsize)
-		mem[i++] = 0;
+	mem = malloc(nelem * elsize);
+	if (!mem)
+		return (0);
+	ft_bzero(mem, nelem * elsize);
 	return (mem);
 }
