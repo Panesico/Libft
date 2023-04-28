@@ -12,14 +12,16 @@
 
 #include "libft.h"
 
-int	ft_strchrcmp(char c, char const *set, size_t counter)
+int	ft_strchrcmp(char c, char const *set)
 {
 	size_t	i;
 
+	if (!set[0])
+		return (0);
 	i = 0;
 	while (set[i])
 	{
-		if (c == set[counter])
+		if (c == set[i])
 			return (1);
 		i++;
 	}
@@ -32,20 +34,21 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	j;
 	size_t	k;
 	char	*str;
-	size_t	s1_len;
 
-	s1_len = ft_strlen(s1);
-	str = (char *)malloc(s1_len * sizeof(char));
+	i = 0;
+	while (s1[i] && ft_strchrcmp(s1[i], set))
+		i++;
+	j = ft_strlen(s1);
+	while (j && ft_strchrcmp(s1[j - 1], set))
+		j--;
+	if (i > j)
+		i = 0;
+	str = (char *)malloc((j - i + 1) * sizeof(char));
 	if (!str)
 		return (0);
-	i = 0;
-	while (ft_strchrcmp(s1[i], set, i))
-		i++;
-	j = s1_len;
-	while (ft_strchrcmp(s1[j], set, j))
-		j--;
 	k = 0;
-	while (i <= j)
+	while (i < j && j)
 		str[k++] = s1[i++];
+	str[k] = 0;
 	return (str);
 }

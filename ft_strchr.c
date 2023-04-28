@@ -6,7 +6,7 @@
 /*   By: jorgfern <jorgfern@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:05:36 by jorgfern          #+#    #+#             */
-/*   Updated: 2023/04/25 18:49:17 by jorgfern         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:10:51 by jorgfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 char	*ft_strchr(const char *str, int c)
 {
-	while (str)
+	size_t	i;
+
+	i = -1;
+	while (str[++i])
 	{
-		if (*str == c)
-			return ((char *)str);
-		str++;
+		if (str[i] == (char)c)
+			return ((char *)&str[i]);
 	}
-	if (*str == c)
-		return ((char *)str);
+	if (str[i] == (char)c)
+		return ((char *)&str[i]);
 	return (0);
 }

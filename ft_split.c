@@ -6,41 +6,47 @@
 /*   By: jorgfern <jorgfern@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:05:36 by jorgfern          #+#    #+#             */
-/*   Updated: 2023/04/25 18:56:48 by jorgfern         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:59:35 by jorgfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_arraylen(char *str, char delimiter)
+static	size_t	ft_arraylen(char *str, char delimiter)
 {
 	size_t	i;
 	size_t	del_count;
 
-	if (!str)
-		return (0);
 	i = 0;
-	del_count = 1;
+	del_count = 0;
 	while (str[i])
 	{
-		if (str[i] == delimiter)
+		if (str[i] != delimiter)
+		{
 			del_count++;
-		i++;
+			while (str[i] && str[i] != delimiter)
+				i++;
+		}
+		else
+			i++;
 	}
 	return (del_count);
 }
 
-int	ft_wordlen(char *str, char del, size_t i)
+static	size_t	ft_wordlen(char *str, char del, size_t i)
 {
 	size_t	len;
 
 	len = 0;
-	while (str[i] != del)
+	while (str[i] != del && str[i])
+	{
 		len++;
+		i++;
+	}
 	return (len);
 }
 
-void	ft_free_array_if_error(char **array)
+static	void	ft_free_array(char **array)
 {
 	size_t	i;
 
@@ -55,27 +61,28 @@ void	ft_free_array_if_error(char **array)
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		k;
+	int		array_len;
+	int		word_len;
 	char	**array;
 
-	array = (char **)malloc((ft_arraylen((char *)s, c) + 1) * sizeof(char *));
+	array_len = ft_arraylen((char *)s, c);
+	array = (char **)malloc((array_len + 1) * sizeof(char *));
 	if (!array)
 		return (0);
 	i = 0;
-	while (i < ft_arraylen((char *)s, c))
+	k = 0;
+	while (i < array_len && s[k])
 	{
-		j = 0;
-		array[i] = (char *)malloc((ft_wordlen((char *)s, c, i) + 1) * 1);
+		while (s[k] == c)
+			k++;
+		word_len = ft_wordlen((char *)s, c, k);
+		array[i] = ft_substr(s, k, word_len);
 		if (!array[i])
-		{
-			ft_free_array_if_error(array);
-			return (0);
-		}
-		while (*s != c && *s)
-			array[i][j++] = *(s++);
-		array[i++][j] = 0;
-		s++;
+			return (ft_free_array(array), NULL);
+		i++;
+		k += word_len;
 	}
 	array[i] = 0;
 	return (array);
