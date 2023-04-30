@@ -12,36 +12,49 @@
 
 #include "libft.h"
 
-int	ft_isspace(char c)
+unsigned int	ft_digit_count(long nb)
 {
-	if (c == ' ' || c == '\f' || c == '\n'
-		|| c == '\r' || c == '\t' || c == '\v')
-		return (1);
-	return (0);
+	unsigned int	count;
+
+	count = 0;
+	if (!nb)
+		count = 1;
+	if (nb < 0)
+	{
+		nb = -nb;
+		count++;
+	}
+	while (nb > 0)
+	{
+		nb /= 10;
+		count++;
+	}
+	return (count);
 }
 
-int	ft_atoi(const char *str)
+char	*ft_itoa(int nb)
 {
-	size_t	i;
-	size_t	negative;
-	size_t	num;
+	unsigned int	i;
+	long	num;
+	char	*str;
 
-	i = 0;
-	negative = 0;
-	num = 0;
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	num = nb;
+	str = (char *)malloc((ft_digit_count(num) + 1) * sizeof(char));
+	if (!str)
+		return (0);
+	str[ft_digit_count(num)] = '\0';
+	if (num == 0)
+		str[0] = '0';
+	i = ft_digit_count(num) - 1;
+	if (num < 0)
 	{
-		if (str[i] == '-')
-		{
-			negative++;
-		}
-		i++;
+		num = -num;
+		str[0] = '-';
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-		num = (num * 10) + (str[i++] - 48);
-	if (negative)
-		num *= -1;
-	return (num);
+	while (num > 0)
+	{
+		str[i--] = (num % 10) + 48;
+		num /= 10;
+	}
+	return (str);
 }
