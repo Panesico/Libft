@@ -19,16 +19,16 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(AR) $(NAME) $(OBJ)
-	@echo Making the Library ✅ ✅
+	@echo Making...
 bonus: $(OBJBON) $(OBJ)
 	@$(AR) $(NAME) $(OBJBON) $(OBJ)
-	@echo Making the bonus Library ✅ ✅
+	@echo Making bonus...
 clean:
 	@rm -rf *.o
-	@echo Deleting all .o Files 🗑️ 🗑️
+	@echo Deleting .o files
 fclean: clean
 	@rm -f $(NAME)
-	@echo Deleting .a File 🗑️ 🗑️
+	@echo Deleting .a file
 
 %.o: %.c
 	@gcc $(CFLAGS) -I libft.h -o $@ -c $<
