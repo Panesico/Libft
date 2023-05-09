@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-int	ft_digit_count(long nb)
+unsigned int	ft_digit_count(long nb)
 {
-	size_t	count;
+	unsigned int	count;
 
 	count = 0;
 	if (!nb)
@@ -34,9 +34,9 @@ int	ft_digit_count(long nb)
 
 char	*ft_itoa(int nb)
 {
-	long	i;
-	long	num;
-	char	*str;
+	unsigned int	i;
+	long			num;
+	char			*str;
 
 	num = nb;
 	str = (char *)malloc((ft_digit_count(num) + 1) * sizeof(char));
