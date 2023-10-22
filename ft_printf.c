@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorgfern <jorgfern@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 18:05:38 by jorgfern          #+#    #+#             */
-/*   Updated: 2023/04/26 18:03:29 by jorgfern         ###   ########.fr       */
+/*   Created: 2023/05/03 20:38:39 by jorgfern          #+#    #+#             */
+/*   Updated: 2023/05/04 01:22:45 by jorgfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+int	ft_printf(const char *str, ...)
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
+	va_list		arglist;
+	int			print_len;
+	int			i;
 
-	if (!s1)
-		s1 = ft_strdup("");
-	if (!s2)
-		s2 = ft_strdup("");
-	str = (char *)malloc(((ft_strlen(s1) + ft_strlen(s2)) + 1) * sizeof(char));
+	va_start(arglist, str);
+	print_len = 0;
+	i = 0;
 	if (!str)
-		return (0);
-	i = -1;
-	j = 0;
-	if (s1)
-		while (s1[++i] != '\0')
-			str[i] = s1[i];
-	while (s2[j] != '\0')
-		str[i++] = s2[j++];
-	str[i] = 0;
-	free(s1);
-	free(s2);
-	return (str);
+		return (-1);
+	while (str[i])
+	{
+		if (str[i] == '%')
+			print_len += ft_convert_printf(str[++i], arglist);
+		else
+			print_len += ft_putchar_fd_printf(str[i], 1);
+		i++;
+	}
+	va_end(arglist);
+	return (print_len);
 }

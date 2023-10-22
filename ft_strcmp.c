@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorgfern <jorgfern@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 18:05:48 by jorgfern          #+#    #+#             */
-/*   Updated: 2023/09/29 13:27:25 by jorgfern         ###   ########.fr       */
+/*   Created: 2023/04/25 18:05:46 by jorgfern          #+#    #+#             */
+/*   Updated: 2023/08/01 20:41:26 by jorgfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *str, int c)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	ssize_t	i;
+	size_t	i;
 
-	i = (ssize_t)ft_strlen(str);
-	while (i >= 0)
+	if (!s1 || !s2)
+		return (-2);
+	i = 0;
+	while ((s1[i] || s2[i]))
 	{
-		if (str[i] == (char)c)
-			return (&(((char *)str)[i]));
-		--i;
+		if ((unsigned char)(s1[i]) == (unsigned char)(s2[i]))
+			i++;
+		else
+		{
+			if ((unsigned char)(s1[i]) < (unsigned char)(s2[i]))
+				return (-1);
+			if ((unsigned char)(s1[i]) > (unsigned char)(s2[i]))
+				return (1);
+		}
 	}
 	return (0);
 }

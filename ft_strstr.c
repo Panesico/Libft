@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgfern <jorgfern@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jorgfern <jorgfern@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 18:05:48 by jorgfern          #+#    #+#             */
-/*   Updated: 2023/09/29 13:27:25 by jorgfern         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:53:32 by jorgfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *str, int c)
+char	*ft_strstr(char *s1, char *s2)
 {
-	ssize_t	i;
+	size_t	s2_len;
+	int		i;
 
-	i = (ssize_t)ft_strlen(str);
-	while (i >= 0)
+	if (!(*s2) || s1 == s2)
+		return ((char *)s1);
+	s2_len = ft_strlen(s2);
+	i = 0;
+	while (s1[i])
 	{
-		if (str[i] == (char)c)
-			return (&(((char *)str)[i]));
-		--i;
+		if (!ft_strncmp((char *)s1 + i, (char *)s2, s2_len))
+			return ((char *)(s1 + i));
+		i++;
 	}
 	return (0);
 }
