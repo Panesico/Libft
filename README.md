@@ -1,4 +1,4 @@
-![Banner](https://github.com/byaliego/42-project-badges/blob/main/covers/cover-libft-bonus.png)
+![image](https://github.com/Panesico/Libft/assets/101527876/7588b23a-ccab-4484-a3eb-dc42cea64008)![Banner](https://github.com/byaliego/42-project-badges/blob/main/covers/cover-libft-bonus.png)
 
 ## About
 
@@ -31,3 +31,16 @@
 | 22  | [ft_tolower](https://github.com/Panesico/Libft/blob/main/ft_tolower.c) |   |     |                                                                                      |   |     |                                                                                          |
 | 23  | [ft_calloc](https://github.com/Panesico/Libft/blob/main/ft_calloc.c)   |   |     |                                                                                      |   |     |                                                                                          |
 | 24  | [ft_strdup](https://github.com/Panesico/Libft/blob/main/ft_strdup.c)   |   |     |                                                                                      |   |     |                                                                                          |
+
+## Others
+
+This proyect also includes other proyects like:
+<p align="left">
+  <a href="https://github.com/Panesico/ft_printf">
+    <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_printfm.png" />
+  </a>
+  
+  <a href="https://github.com/Panesico/get_next_line">
+    <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/get_next_linem.png" />
+  </a>
+</p>
