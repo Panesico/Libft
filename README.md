@@ -1,3 +1,5 @@
+![Banner](https://github.com/byaliego/42-project-badges/blob/main/covers/cover-libft-bonus.png?raw=true)
+
 ## About
 
 >The purpose of this project is to re-code `libc` functions, as well as other common utility functions to be reused in the subsequent 42 projects.
