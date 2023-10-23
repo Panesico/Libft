@@ -1,5 +1,3 @@
-![image](https://github.com/Panesico/Libft/assets/101527876/7588b23a-ccab-4484-a3eb-dc42cea64008)![Banner](https://github.com/byaliego/42-project-badges/blob/main/covers/cover-libft-bonus.png)
-
 ## About
 
 >The purpose of this project is to re-code `libc` functions, as well as other common utility functions to be reused in the subsequent 42 projects.
